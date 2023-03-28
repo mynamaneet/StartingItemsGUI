@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Collections.Generic;
+using System.Security;
+using System.Security.Permissions;
+
+[assembly: SecurityPermission( SecurityAction.RequestMinimum, SkipVerification = true )]
 
 namespace Phedg1Studios {
     namespace StartingItemsGUI {

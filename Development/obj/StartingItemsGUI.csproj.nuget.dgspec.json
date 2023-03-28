@@ -14,6 +14,7 @@
         "outputPath": "C:\\Users\\alex.thomas\\Source\\Repos\\StartingItemsGUI\\Development\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
+          "C:\\Users\\alex.thomas\\Source\\Repos\\StartingItemsGUI\\Development\\NuGet.Config",
           "C:\\Users\\alex.thomas\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -22,7 +23,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.bepinex.dev/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.0": {
@@ -40,11 +42,42 @@
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
           "dependencies": {
+            "BepInEx.Analyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.*, )"
+            },
+            "BepInEx.Core": {
+              "target": "Package",
+              "version": "[5.4.21, )"
+            },
+            "MMHOOK.RoR2": {
+              "target": "Package",
+              "version": "[2022.9.20, )",
+              "noWarn": [
+                "NU1701"
+              ]
+            },
             "NETStandard.Library": {
               "suppressParent": "All",
               "target": "Package",
               "version": "[2.0.3, )",
               "autoReferenced": true
+            },
+            "R2API": {
+              "target": "Package",
+              "version": "[4.3.5, )"
+            },
+            "RiskOfRain2.GameLibs": {
+              "target": "Package",
+              "version": "[1.2.4-r.0, )"
+            },
+            "UnityEngine.Modules": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2022.2.12, )"
             }
           },
           "imports": [

@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Development",
+    "\\Development\\Resources",
+    "\\Development\\Scripts"
   ],
+  "SelectedNode": "\\Development\\StartingItemsGUI.sln",
   "PreviewInSolutionExplorer": false
 }

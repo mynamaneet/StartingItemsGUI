@@ -15,4 +15,8 @@
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgBepInEx_Core Condition=" '$(PkgBepInEx_Core)' == '' ">C:\Users\alex.thomas\.nuget\packages\bepinex.core\5.4.21</PkgBepInEx_Core>
+    <PkgBepInEx_Analyzers Condition=" '$(PkgBepInEx_Analyzers)' == '' ">C:\Users\alex.thomas\.nuget\packages\bepinex.analyzers\1.0.8</PkgBepInEx_Analyzers>
+  </PropertyGroup>
 </Project>
