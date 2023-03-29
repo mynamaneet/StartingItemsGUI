@@ -1,16 +1,13 @@
 ﻿using BepInEx;
 using RoR2;
-using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Collections.Generic;
-using System.Security;
-using System.Security.Permissions;
 
-[assembly: SecurityPermission( SecurityAction.RequestMinimum, SkipVerification = true )]
-
-namespace Phedg1Studios {
-    namespace StartingItemsGUI {
+namespace Phedg1Studios
+{
+    namespace StartingItemsGUI
+    {
         [BepInDependency("com.bepis.r2api")]
         [R2API.Utils.R2APISubmoduleDependency("PrefabAPI")]
         [R2API.Utils.R2APISubmoduleDependency("ResourcesAPI")]

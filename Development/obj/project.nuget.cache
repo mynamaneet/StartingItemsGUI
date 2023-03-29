@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "U4qSeH2udKFH2t4gbU5lQf1VDd7/+r9yFdiQSE5i07JJrzILBM7YOqaPKPFErb4T3KEL0fwc0Vs4oEVRVK/yzQ==",
+  "dgSpecHash": "+EWHWPQxYv0l9qqgn1ixZaQy9yMxSFFrrPLyu52L+haIKNFhs4q4JDLr1SU2SKwz9USxl6SGA9nZU0CaRIFmZA==",
   "success": true,
   "projectFilePath": "C:\\Users\\alex.thomas\\Source\\Repos\\StartingItemsGUI\\Development\\StartingItemsGUI.csproj",
   "expectedPackageFiles": [
@@ -44,7 +44,7 @@
     "C:\\Users\\alex.thomas\\.nuget\\packages\\system.text.encoding\\4.3.0\\system.text.encoding.4.3.0.nupkg.sha512",
     "C:\\Users\\alex.thomas\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",
     "C:\\Users\\alex.thomas\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
-    "C:\\Users\\alex.thomas\\.nuget\\packages\\unityengine.modules\\2022.2.12\\unityengine.modules.2022.2.12.nupkg.sha512"
+    "C:\\Users\\alex.thomas\\.nuget\\packages\\unityengine.modules\\2019.4.26\\unityengine.modules.2019.4.26.nupkg.sha512"
   ],
   "logs": []
 }
