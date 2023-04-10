@@ -107,7 +107,7 @@ namespace Phedg1Studios {
             }
 
             static void GetUserPointsNegate() {
-                string userPointsAdjustPath = BepInEx.Paths.BepInExRootPath + "/" + "config" + "/" + Data.modFolder + "/" + Data.userProfile + "/" + userPointsAdjustFile;
+                string userPointsAdjustPath = BepInEx.Paths.BepInExRootPath + "/" + "config" + "/" + Data.modFolder + "/" + Data.userProfileString + "/" + userPointsAdjustFile;
                 
                 if (File.Exists(userPointsAdjustPath)) {
                     StreamReader reader = new StreamReader(userPointsAdjustPath);
@@ -121,12 +121,12 @@ namespace Phedg1Studios {
 
             static void GetUserStages() {
                 totalStages = 0;
-                if (Data.userProfile != "") {
+                if (Data.userProfileString != "") {
                     int stagesCompleted = GetStat(RoR2.Stats.StatDef.totalStagesCompleted);
                     totalStages = Mathf.FloorToInt(stagesCompleted);
                 }
 
-                string userStagesPath = BepInEx.Paths.BepInExRootPath + "/" + "config" + "/" + Data.modFolder + "/" + Data.userProfile + "/" + userStagesFile;
+                string userStagesPath = BepInEx.Paths.BepInExRootPath + "/" + "config" + "/" + Data.modFolder + "/" + Data.userProfileString + "/" + userStagesFile;
                 if (File.Exists(userStagesPath)) {
                     StreamReader reader = new StreamReader(userStagesPath);
                     string userStagesString = reader.ReadToEnd();
@@ -179,7 +179,7 @@ namespace Phedg1Studios {
 
             static void GetUserPoints(Dictionary<string, string> config) {
                 string line = Util.GetConfig(config, userPointsName);
-                string userPointsPath = BepInEx.Paths.BepInExRootPath + "/" + "config" + "/" + Data.modFolder + "/" + Data.userProfile + "/" + userPointsFile;
+                string userPointsPath = BepInEx.Paths.BepInExRootPath + "/" + "config" + "/" + Data.modFolder + "/" + Data.userProfileString + "/" + userPointsFile;
                 line = Util.MultilineToSingleLine(line, userPointsPath);
 
                 userPointsEarnt = 0;
@@ -335,7 +335,7 @@ namespace Phedg1Studios {
             }
 
             static private int GetStat(RoR2.Stats.StatDef givenStatDef) {
-                UInt64 statValue = RoR2.UserProfile.GetProfile(Data.userProfile).statSheet.GetStatValueULong(givenStatDef);
+                UInt64 statValue = RoR2.UserProfile.GetProfile(Data.userProfileString).statSheet.GetStatValueULong(givenStatDef);
                 int statValueAdjusted;
                 if (statValue <= System.Int32.MaxValue) {
                     statValueAdjusted = System.Convert.ToInt32(statValue);

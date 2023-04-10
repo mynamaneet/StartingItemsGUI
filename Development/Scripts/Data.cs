@@ -42,7 +42,8 @@ namespace Phedg1Studios {
             static public int lunarScavPointsDefault = 40;
             static public int mithrixPointsDefault = 60;
 
-            static public string userProfile = "";
+            static public string userProfileString = "";
+            static public UserProfile userProfile = null;
             static public string developerName = "Phedg1 Studios";
             static public string modName = "Starting Items GUI";
             static public string modFolder;
@@ -164,11 +165,11 @@ namespace Phedg1Studios {
             static public void RefreshInfo(string givenProfileID = "") {
                 oldConfigFiles.Clear();
                 MakeDirectoryExist();
-                GetUserProfileID(givenProfileID);
+                //GetUserProfileID(givenProfileID);
                 Dictionary<string, string> configGlobal = ReadConfig(configName);
                 GetConfig(configGlobal);
                 CorrectMode();
-                Dictionary<string, string> configProfile = ReadConfig(configProfileName, userProfile + profileConfigFile);
+                Dictionary<string, string> configProfile = ReadConfig(configProfileName, userProfileString + profileConfigFile);
                 GetProfiles(configProfile);
                 DataEarntConsumable.RefreshInfo(configGlobal, configProfile);
                 DataEarntPersistent.RefreshInfo(configGlobal, configProfile);
@@ -193,26 +194,33 @@ namespace Phedg1Studios {
             }
 
             static void DeleteOldConfig() {
-                string oldPath = BepInEx.Paths.BepInExRootPath + "/" + "config" + "/" + Data.modFolder + "/" + Data.userProfile;
+                string oldPath = BepInEx.Paths.BepInExRootPath + "/" + "config" + "/" + Data.modFolder + "/" + Data.userProfileString;
                 if (Directory.Exists(oldPath)) {
-                    Directory.Delete(BepInEx.Paths.BepInExRootPath + "/" + "config" + "/" + Data.modFolder + "/" + Data.userProfile, true);
+                    Directory.Delete(BepInEx.Paths.BepInExRootPath + "/" + "config" + "/" + Data.modFolder + "/" + Data.userProfileString, true);
                 }
             }
 
-            static void GetUserProfileID(string givenProfileID = "") {
-                if (givenProfileID == "") {
-                    List<string> profileIDs = RoR2.UserProfile.GetAvailableProfileNames();
-                    foreach (string userID in profileIDs) {
-                        if (RoR2.UserProfile.GetProfile(userID) != null) {
-                            if (RoR2.UserProfile.GetProfile(userID).loggedIn) {
-                                userProfile = userID;
-                            }
-                        }
-                    }
-                } else {
-                    userProfile = givenProfileID;
-                }
-            }
+            //static void GetUserProfileID(string givenProfileID = "")
+            //{
+            //    if (givenProfileID == "")
+            //    {
+            //        List<string> profileIDs = RoR2.UserProfile.GetAvailableProfileNames();
+            //        foreach (string userID in profileIDs)
+            //        {
+            //            if (RoR2.UserProfile.GetProfile(userID) != null)
+            //            {
+            //                if (RoR2.UserProfile.GetProfile(userID).loggedIn)
+            //                {
+            //                    userProfile = userID;
+            //                }
+            //            }
+            //        }
+            //    }
+            //    else
+            //    {
+            //        userProfile = givenProfileID;
+            //    }
+            //}
 
             static Dictionary<string, string> ReadConfig(List<string> givenPaths, string givenSuffix = "") {
                 Dictionary<string, string> config = new Dictionary<string, string>();
@@ -332,7 +340,7 @@ namespace Phedg1Studios {
 
             static void GetProfiles(Dictionary<string, string> config) {
                 string line = Util.GetConfig(config, profilesName);
-                string profilesPath = BepInEx.Paths.BepInExRootPath + "/" + "config" + "/" + Data.modFolder + "/" + userProfile + "/" + profilesFile;
+                string profilesPath = BepInEx.Paths.BepInExRootPath + "/" + "config" + "/" + Data.modFolder + "/" + userProfileString + "/" + profilesFile;
                 line = Util.MultilineToSingleLine(line, profilesPath);
                 profile.Clear();
                 for (int profileIndex = 0; profileIndex < modeCount; profileIndex++) {
@@ -355,7 +363,7 @@ namespace Phedg1Studios {
                 string line = Util.GetConfig(config, configName);
                 string userPointsPath = fileName;
                 if (fileName != "null") {
-                    userPointsPath = BepInEx.Paths.BepInExRootPath + "/" + "config" + "/" + Data.modFolder + "/" + Data.userProfile + "/" + fileName;
+                    userPointsPath = BepInEx.Paths.BepInExRootPath + "/" + "config" + "/" + Data.modFolder + "/" + Data.userProfileString + "/" + fileName;
                 }
                 line = Util.MultilineToSingleLine(line, userPointsPath);
                 return Data.ParseInt(0, line);
@@ -363,7 +371,7 @@ namespace Phedg1Studios {
 
             static public int GetItemsPurchased(Dictionary<string, string> config, List<string> configName, string fileName, List<Dictionary<int, int>> dict, int points, int mode) {
                 string line = Util.GetConfig(config, configName);
-                string itemsPurchasedPath = BepInEx.Paths.BepInExRootPath + "/" + "config" + "/" + Data.modFolder + "/" + Data.userProfile + "/" + fileName;
+                string itemsPurchasedPath = BepInEx.Paths.BepInExRootPath + "/" + "config" + "/" + Data.modFolder + "/" + Data.userProfileString + "/" + fileName;
                 line = Util.MultilineToSingleLine(line, itemsPurchasedPath);
                 dict.Clear();
                 for (int profile = 0; profile < Data.profileCount; profile++) {
@@ -434,14 +442,14 @@ namespace Phedg1Studios {
                         return true;
                     }
                     if (allItemIDs.ContainsKey(itemID)) {
-                        if (RoR2.UserProfile.GetProfile(userProfile).HasUnlockable(RoR2.ItemCatalog.GetItemDef(allItemIDs[itemID]).unlockableName)) {
-                            if (RoR2.UserProfile.GetProfile(userProfile).HasDiscoveredPickup(new PickupIndex(allItemIDs[itemID]))) {
+                        if (userProfile.HasUnlockable(RoR2.ItemCatalog.GetItemDef(allItemIDs[itemID]).nameToken)) {
+                            if (userProfile.HasDiscoveredPickup(new PickupIndex(allItemIDs[itemID]))) {
                                 return true;
                             }
                         }
                     } else if (allEquipmentIDs.ContainsKey(itemID)) {
-                        if (RoR2.UserProfile.GetProfile(userProfile).HasUnlockable(RoR2.EquipmentCatalog.GetEquipmentDef(allEquipmentIDs[itemID]).unlockableName)) {
-                            if (RoR2.UserProfile.GetProfile(userProfile).HasDiscoveredPickup(new PickupIndex(allEquipmentIDs[itemID]))) {
+                        if (userProfile.HasUnlockable(RoR2.EquipmentCatalog.GetEquipmentDef(allEquipmentIDs[itemID]).nameToken)) {
+                            if (userProfile.HasDiscoveredPickup(new PickupIndex(allEquipmentIDs[itemID]))) {
                                 return true;
                             }
                         }
@@ -688,7 +696,7 @@ namespace Phedg1Studios {
             static public void SaveConfigProfile() {
                 string spacing = " ";
                 string variableCharUpdate = spacing + variableChar + spacing;
-                string configPath = configProfileName[0] + userProfile + profileConfigFile;
+                string configPath = configProfileName[0] + userProfileString + profileConfigFile;
                 StreamWriter writer = new StreamWriter(configPath, false);
                 string configString = "";
                 configString += profilesName[0] + variableCharUpdate + Util.ListToString(profile);

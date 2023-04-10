@@ -3,6 +3,7 @@ using RoR2;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Phedg1Studios
 {
@@ -118,6 +119,11 @@ namespace Phedg1Studios
                     if ((double)num7 >= 0.0)
                         return;
                     scrollRect.horizontalScrollbar.value += num7 / num8;
+                };
+
+                LocalUserManager.onUserSignIn += (user) =>
+                {
+                    Data.userProfile = user.userProfile;
                 };
             }
 
