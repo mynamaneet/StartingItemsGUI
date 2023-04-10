@@ -10,7 +10,7 @@ namespace Phedg1Studios {
     namespace StartingItemsGUI {
         public class Util : MonoBehaviour {
 
-            void Update() {
+            private void Update() {
                 if (Input.GetKeyDown(KeyCode.F2)) {
                     /*
                     Transform newObject = null;

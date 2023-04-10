@@ -157,6 +157,9 @@
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>..\..\..\..\.nuget\packages\unityengine.modules\2019.4.26\lib\netstandard2.0\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>..\..\..\..\.nuget\packages\unityengine.modules\2019.4.26\lib\netstandard2.0\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UIModule">
       <HintPath>..\..\..\..\.nuget\packages\unityengine.modules\2019.4.26\lib\netstandard2.0\UnityEngine.UIModule.dll</HintPath>
     </Reference>
