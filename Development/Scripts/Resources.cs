@@ -55,8 +55,10 @@ namespace Phedg1Studios {
 
                 System.IO.Stream stream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(modName + "." + assetBundleLocation);
                 AssetBundle bundle = AssetBundle.LoadFromStream(stream);
-                R2API.AssetBundleResourcesProvider provider = new R2API.AssetBundleResourcesProvider(assetPrefix, bundle);
-                R2API.ResourcesAPI.AddProvider(provider);
+
+                //Classes no longer exist
+                //R2API.AssetBundleResourcesProvider provider = new R2API.AssetBundleResourcesProvider(assetPrefix, bundle);
+                //R2API.ResourcesAPI.AddProvider(provider);
 
                 foreach (string tierTextureName in tierTextureNames) {
                     tierTextures.Add(bundle.LoadAsset<Sprite>(tierTextureName));

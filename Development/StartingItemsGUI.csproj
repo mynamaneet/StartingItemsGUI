@@ -151,6 +151,9 @@
     <Reference Include="UnityEngine">
       <HintPath>..\..\..\..\.nuget\packages\unityengine.modules\2019.4.26\lib\netstandard2.0\UnityEngine.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>..\..\..\..\.nuget\packages\unityengine.modules\2019.4.26\lib\netstandard2.0\UnityEngine.AssetBundleModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>..\..\..\..\.nuget\packages\unityengine.modules\2019.4.26\lib\netstandard2.0\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
