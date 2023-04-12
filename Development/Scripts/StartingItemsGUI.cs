@@ -26,7 +26,8 @@ namespace Phedg1Studios
                 Data.UpdateConfigLocations();
                 gameObject.AddComponent<Util>();
                 Resources.LoadResources();
-                Data.PopulateItemCatalogues();
+                //Log.LogInfo("Before Populate Catalogues");
+                //Data.PopulateItemCatalogues();
                 SceneLoadSetup();
                 R2API.Networking.NetworkingAPI.RegisterMessageType<Connection>();
                 R2API.Networking.NetworkingAPI.RegisterMessageType<ItemPurchased>();
@@ -41,6 +42,7 @@ namespace Phedg1Studios
 
             void Start() {
                 startingItemsGUI = this;
+                Log.Init(Logger);
                 OnceSetup();
                 On.RoR2.PreGameController.OnEnable += ((orig, preGameController) => {
                     Data.localUsers.Clear();
@@ -123,8 +125,12 @@ namespace Phedg1Studios
 
                 LocalUserManager.onUserSignIn += (user) =>
                 {
+                    //Log.LogInfo("onUserSignIn");
                     Data.userProfile = user.userProfile;
+                    Data.PopulateItemCatalogues();
                 };
+
+                Log.LogInfo("Finished Loading");
             }
 
             IEnumerator<float> GetMasterController(NetworkUser networkUser) {

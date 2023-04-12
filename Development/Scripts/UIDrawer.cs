@@ -276,11 +276,27 @@ namespace Phedg1Studios {
 
             static public List<int> GetStoreItems() {
                 List<int> storeItems = new List<int>();
-                foreach (ItemIndex itemIndex in RoR2.ItemCatalog.tier1ItemList) {
-                    if (Data.UnlockedItem(Data.allItemsIndexes[itemIndex])) {
-                        storeItems.Add(Data.allItemsIndexes[itemIndex]);
+                //List<ItemIndex> testCatalog = RoR2.ItemCatalog.tier1ItemList;
+                //Log.LogDebug("Start of GetStoreItems()");
+                try
+                {
+                    foreach (ItemIndex itemIndex in RoR2.ItemCatalog.tier1ItemList)
+                    {
+                        Log.LogDebug(ItemCatalog.GetItemDef(itemIndex).nameToken);
+                        if (Data.allItemsIndexes.ContainsKey(itemIndex))
+                        {
+                            Log.LogDebug("Passed");
+                            if (Data.UnlockedItem(Data.allItemsIndexes[itemIndex]))
+                            {
+                                storeItems.Add(Data.allItemsIndexes[itemIndex]);
+                            }
+                        }
                     }
+                } catch(KeyNotFoundException e)
+                {
+                    Log.LogError(e.Message);
                 }
+                //Log.LogDebug("Passed Tier 1");
                 foreach (ItemIndex itemIndex in RoR2.ItemCatalog.tier2ItemList) {
                     if (Data.UnlockedItem(Data.allItemsIndexes[itemIndex])) {
                         storeItems.Add(Data.allItemsIndexes[itemIndex]);
