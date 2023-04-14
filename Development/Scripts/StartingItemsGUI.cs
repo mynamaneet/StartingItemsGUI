@@ -125,9 +125,12 @@ namespace Phedg1Studios
 
                 LocalUserManager.onUserSignIn += (user) =>
                 {
-                    //Log.LogInfo("onUserSignIn");
+                    Log.LogDebug("onUserSignIn");
                     Data.userProfile = user.userProfile;
                     Data.PopulateItemCatalogues();
+                    Data.localUsers.Add(user.userProfile.fileName);
+                    Log.LogDebug("userProfileString : " + user.userProfile.name);
+                    Data.userProfileString = user.userProfile.name;
                 };
 
                 Log.LogInfo("Finished Loading");

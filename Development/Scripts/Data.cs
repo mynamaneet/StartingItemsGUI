@@ -118,6 +118,11 @@ namespace Phedg1Studios {
 
             static public void PopulateItemCatalogues() {
                 int index = 0;
+                allItemIDs.Clear();
+                allItemsIndexes.Clear();
+                allEquipmentIDs.Clear();
+                allEquipmentIndexes.Clear();
+                bossItems.Clear();
                 foreach (ItemIndex itemIndex in RoR2.ItemCatalog.allItems) {
                     allItemIDs.Add(index, itemIndex);
                     allItemsIndexes.Add(itemIndex, index);

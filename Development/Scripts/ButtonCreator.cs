@@ -61,7 +61,11 @@ namespace Phedg1Studios {
             }
 
             static public RectTransform SpawnItemButton(GameObject root, int textCount, int givenID, Dictionary<int, List<Image>> images, Dictionary<int, List<TMPro.TextMeshProUGUI>> texts, bool isFallback = false) {
+                if (images.ContainsKey(givenID))
+                    images.Remove(givenID);
                 images.Add(givenID, new List<Image>());
+                if (texts.ContainsKey(givenID))
+                    texts.Remove(givenID);
                 texts.Add(givenID, new List<TMPro.TextMeshProUGUI>());
 
                 ColorBlock colourBlockA = new ColorBlock();
